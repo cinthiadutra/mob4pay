@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mob4pay/data/mob4pay_repository.dart';
+import 'package:intl/intl.dart';
 
 class LinhaExtrato extends StatefulWidget {
   final String? dataDespesa;
@@ -18,28 +18,23 @@ class LinhaExtrato extends StatefulWidget {
 }
 
 class _LinhaExtratoState extends State<LinhaExtrato> {
-  Mob4payRepository repo = Mob4payRepository();
-  @override
-  void initState() {
-    repo.listarDespesas();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    DateTime data = DateTime.parse(widget.dataDespesa!);
+    String datafim = DateFormat('dd/MM/yyyy').format(data);
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 10,
-      ),
-      child: Row(
-        children: [
+        padding: const EdgeInsets.only(
+          top: 10,
+        ),
+        child: Row(children: [
           Container(
             height: 100,
             width: 100,
             color: Colors.grey[300],
-            child: Center(child: Text(widget.dataDespesa ?? '23 Marc')),
+            child: Center(child: Text(datafim)),
           ),
           Container(
+            height: 100,
             width: MediaQuery.sizeOf(context).width - 120,
             color: Colors.white,
             child: Row(
@@ -48,15 +43,26 @@ class _LinhaExtratoState extends State<LinhaExtrato> {
                 Text(widget.descricao ?? 'Pagamento',
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.bold)),
-                Text(
-                  widget.valor ?? '200.00',
-                  style: const TextStyle(fontSize: 18),
+                RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      const TextSpan(
+                        text: 'R\$ ',
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
+                      TextSpan(
+                        text: "${widget.valor}",
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           )
-        ],
-      ),
-    );
+        ]));
   }
 }

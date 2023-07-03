@@ -44,7 +44,7 @@ class Mob4payService {
 
         if (data is List) {
           final despesa = data
-              .map((objetoJson) => DespesaModel.fromJson(objetoJson))
+              .map((objetoJson) => DespesaModel.fromMap(objetoJson))
               .toList();
           return Right(despesa);
         } else {

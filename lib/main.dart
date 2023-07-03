@@ -16,11 +16,6 @@ class Mob4Pay extends StatefulWidget {
 }
 
 class _Mob4PayState extends State<Mob4Pay> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   int currentIndex = 0;
 
   List<Widget> pages = [
