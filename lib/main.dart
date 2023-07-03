@@ -47,9 +47,9 @@ class _Mob4PayState extends State<Mob4Pay> {
             currentIndex: currentIndex,
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.wallet_travel_outlined), label: ""),
+                  icon: Icon(Icons.account_balance_wallet_outlined), label: ""),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.add_chart_sharp), label: ""),
+                  icon: Icon(Icons.bar_chart_outlined), label: ""),
             ]),
       ),
     );
